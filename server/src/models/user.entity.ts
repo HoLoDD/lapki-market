@@ -23,7 +23,7 @@ export class User extends BaseEntity {
     @Column('varchar')
     password: string;
 
-    @Column('int')
+    @Column('int', { nullable: true })
     phone: number;
 
     @OneToOne(() => Basket)
