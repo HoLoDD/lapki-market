@@ -1,4 +1,10 @@
-import { Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Entity,
+    JoinColumn,
+    OneToMany,
+    OneToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Order } from './order.entity';
 import { User } from './user.entity';
 
@@ -8,6 +14,7 @@ export class OrderHistory {
     id: number;
 
     @OneToOne(() => User)
+    @JoinColumn()
     user: User;
 
     @OneToMany(() => Order, (order) => order.orderHistory)

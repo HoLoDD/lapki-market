@@ -16,7 +16,7 @@ export class Token extends BaseEntity {
     @Column('varchar', { unique: true })
     refreshToken: string;
 
-    @OneToOne(() => User)
+    @OneToOne(() => User, { cascade: true })
     @JoinColumn()
     user: User;
 }

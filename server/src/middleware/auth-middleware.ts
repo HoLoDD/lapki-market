@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { UserDto } from '../dto/user-dto';
 import ApiError from '../exceptions/api-error';
 import tokenService from '../services/token-service';
 
@@ -19,6 +20,7 @@ export default function (req: Request, res: Response, next: NextFunction) {
             return next(ApiError.UnauthorizedError());
         }
 
+        //@ts-ignore
         req.user = userData;
         next();
     } catch (error) {

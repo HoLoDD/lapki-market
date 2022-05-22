@@ -13,10 +13,11 @@ export class Basket {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => User)
+    @OneToOne(() => User, { cascade: true })
+    @JoinColumn()
     user: User;
 
-    @ManyToOne(() => Item)
+    @ManyToOne(() => Item, { cascade: true })
     @JoinColumn()
     items: Item[];
 }

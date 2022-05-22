@@ -1,4 +1,5 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { UserDto } from '../dto/user-dto';
 import { Token } from '../models/token.entity';
 import { User } from '../models/user.entity';
 import dataSource from '../utils/connect-db';

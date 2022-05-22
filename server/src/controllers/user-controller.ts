@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { CreateUserDto } from '../dto/user-dto';
+import tokenService from '../services/token-service';
 import userService from '../services/user-service';
 
 class UserController {
@@ -82,7 +83,17 @@ class UserController {
 
     async check(req: Request, res: Response, next: NextFunction) {
         try {
-            res.json({ user: 'get all users' });
+            const token = tokenService.generateTokens({
+                //@ts-ignore
+                id: req.user.id,
+                //@ts-ignore
+                email: req.user.email,
+                //@ts-ignore
+                phone: req.user.phone,
+                //@ts-ignore
+                username: req.user.username,
+            });
+            res.json({ token });
         } catch (error) {
             next(error);
         }
@@ -90,14 +101,20 @@ class UserController {
 
     async editUser(req: Request, res: Response, next: NextFunction) {
         try {
+            const { email, password, username, phone } = req.body;
+            /*@ts-ignore*/
+            const id = req.user.id;
+            const userData = await userService.editUser({
+                email,
+                password,
+                username,
+                phone,
+            });
+
+            return res.json(userData);
         } catch (error) {
             next(error);
         }
-    }
-
-    async deleteUser(req: Request, res: Response, next: NextFunction) {
-        try {
-        } catch (error) {}
     }
 }
 

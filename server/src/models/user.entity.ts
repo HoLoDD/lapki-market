@@ -4,7 +4,6 @@ import {
     BaseEntity,
     PrimaryGeneratedColumn,
     OneToOne,
-    JoinColumn,
 } from 'typeorm';
 import { Basket } from './basket.entity';
 import { OrderHistory } from './order-histoty.entity';
@@ -17,20 +16,18 @@ export class User extends BaseEntity {
     @Column('varchar', { unique: true })
     email: string;
 
-    @Column('varchar', { unique: true })
+    @Column('varchar')
     username: string;
 
     @Column('varchar')
     password: string;
 
-    @Column('int', { nullable: true })
+    @Column('int')
     phone: number;
 
     @OneToOne(() => Basket)
-    @JoinColumn()
     basket: Basket;
 
     @OneToOne(() => OrderHistory)
-    @JoinColumn()
     orderHistory: OrderHistory;
 }
