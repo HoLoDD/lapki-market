@@ -17,7 +17,7 @@ class BasketService {
             where: {
                 user: { id: userId },
             },
-            relations: ['user'],
+            relations: ['user', 'items'],
         });
         const item = await dataSource.manager.findOneBy(Item, {
             id: itemId,
@@ -27,7 +27,17 @@ class BasketService {
         return saveResult;
     }
 
-    async removeItem(itemId: number) {}
+    async removeItem(userId: number, itemId: number) {
+        const basket = await dataSource.manager.findOne(Basket, {
+            where: {
+                user: { id: userId },
+            },
+            relations: ['user', 'items'],
+        });
+        basket.items = basket.items.filter((item) => item.id != itemId);
+        const saveResult = dataSource.manager.save(Basket, basket);
+        return saveResult;
+    }
 }
 
 export default new BasketService();

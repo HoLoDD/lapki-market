@@ -1,4 +1,5 @@
 import {
+    BaseEntity,
     Column,
     Entity,
     ManyToOne,
@@ -9,7 +10,7 @@ import { Category } from './category.entity';
 import { Item } from './item.entity';
 
 @Entity('Type')
-export class Type {
+export class Type extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

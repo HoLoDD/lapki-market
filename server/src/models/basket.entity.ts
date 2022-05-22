@@ -1,4 +1,5 @@
 import {
+    BaseEntity,
     Entity,
     JoinColumn,
     ManyToOne,
@@ -9,7 +10,7 @@ import { Item } from './item.entity';
 import { User } from './user.entity';
 
 @Entity('Basket')
-export class Basket {
+export class Basket extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

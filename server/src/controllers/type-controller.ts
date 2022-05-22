@@ -1,29 +1,50 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import typeService from '../services/type-service';
 
 class TypeController {
-    async getAllTypes(req: Request, res: Response) {
+    async getAllTypes(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            const types = await typeService.getAllTypes();
+            res.json(types);
+        } catch (error) {
+            next(error);
+        }
     }
 
-    async getTypeById(req: Request, res: Response) {
+    async getTypeById(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            const { id } = req.params;
+            const type = await typeService.getTypeById(parseInt(id));
+            res.json(type);
+        } catch (error) {
+            next(error);
+        }
     }
 
-    async addType(req: Request, res: Response) {
+    async addType(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            const { name, categoryId } = req.body;
+            const type = await typeService.addType(name, categoryId);
+            res.json(type);
+        } catch (error) {
+            next(error);
+        }
     }
 
-    async editType(req: Request, res: Response) {
+    async editType(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            res.json({ TODO: 'EDIT TYPE' });
+        } catch (error) {
+            next(error);
+        }
     }
 
-    async deleteType(req: Request, res: Response) {
+    async deleteType(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            res.json({ TODO: 'DELETE TYPE' });
+        } catch (error) {
+            next(error);
+        }
     }
 }
 

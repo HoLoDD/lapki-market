@@ -1,4 +1,5 @@
 import {
+    BaseEntity,
     Column,
     Entity,
     ManyToOne,
@@ -9,7 +10,7 @@ import { OrderHistory } from './order-histoty.entity';
 import { SoldItem } from './sold-item.entity';
 
 @Entity('Order')
-export class Order {
+export class Order extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -1,14 +1,15 @@
 import {
+    BaseEntity,
     Column,
     Entity,
-    JoinTable,
+    JoinColumn,
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Type } from './type.entity';
 
 @Entity('Item')
-export class Item {
+export class Item extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -21,10 +22,10 @@ export class Item {
     @Column('varchar')
     description: string;
 
-    @Column('varchar')
+    @Column('varchar', { nullable: true })
     photo: string;
 
-    @OneToOne(() => Type)
-    @JoinTable()
+    @OneToOne(() => Type, (type) => type.item, { cascade: true })
+    @JoinColumn()
     type: Type;
 }

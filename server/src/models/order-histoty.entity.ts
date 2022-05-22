@@ -1,4 +1,5 @@
 import {
+    BaseEntity,
     Entity,
     JoinColumn,
     OneToMany,
@@ -9,7 +10,7 @@ import { Order } from './order.entity';
 import { User } from './user.entity';
 
 @Entity('OrderHistory')
-export class OrderHistory {
+export class OrderHistory extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
