@@ -5,7 +5,9 @@ import dataSource from '../utils/connect-db';
 
 class TypeService {
     async getAllTypes() {
-        const types = await dataSource.manager.find(Type);
+        const types = await dataSource.manager.find(Type, {
+            relations: ['category'],
+        });
         return types;
     }
 

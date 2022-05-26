@@ -17,6 +17,32 @@ class ItemService {
         return item;
     }
 
+    async getItemsByCategory(categoryId: number) {
+        const item = await dataSource.manager.find(Item, {
+            where: {
+                type: { category: { id: categoryId } },
+            },
+            relations: ['type'],
+        });
+        if (!item) {
+            throw ApiError.BadRequest('Item not found');
+        }
+        return item;
+    }
+
+    async getItemsByType(typeId: number) {
+        const item = await dataSource.manager.find(Item, {
+            where: {
+                type: { id: typeId },
+            },
+            relations: ['type'],
+        });
+        if (!item) {
+            throw ApiError.BadRequest('Item not found');
+        }
+        return item;
+    }
+
     async addItem({ name, price, description, photo, typeId }) {
         const item = new Item();
         item.name = name;

@@ -16,5 +16,5 @@ export class Category extends BaseEntity {
     name: string;
 
     @OneToMany(() => Type, (type) => type.category)
-    type: Type[];
+    types: Type[];
 }

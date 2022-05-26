@@ -3,7 +3,7 @@ import {
     Column,
     Entity,
     ManyToOne,
-    OneToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from './category.entity';
@@ -17,8 +17,8 @@ export class Type extends BaseEntity {
     @Column('varchar')
     name: string;
 
-    @OneToOne(() => Item)
-    item: Item;
+    @OneToMany(() => Item, (item) => item.type)
+    items: Item[];
 
     @ManyToOne(() => Category)
     category: Category;

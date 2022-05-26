@@ -5,7 +5,9 @@ import typeService from './type-service';
 
 class CategoryService {
     async getAllCategories() {
-        const categories = await dataSource.manager.find(Category);
+        const categories = await dataSource.manager.find(Category, {
+            relations: ['types'],
+        });
         return categories;
     }
 
@@ -21,7 +23,7 @@ class CategoryService {
         const types = await typeService.getAllTypes();
         category.name = name;
         types.forEach((type) => {
-            if (typeIds.includes(type.id)) category.type.push(type);
+            if (typeIds.includes(type.id)) category.types.push(type);
         });
 
         const savedCategory = await dataSource.manager.save(Category, category);

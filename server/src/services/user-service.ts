@@ -56,6 +56,10 @@ class UserService {
     }
 
     async login({ email, password }) {
+        if (!email || !password) {
+            throw ApiError.BadRequest('Empty fields!');
+        }
+
         const user = await dataSource.manager.findOneBy(User, { email });
         if (!user)
             throw ApiError.BadRequest(`User with email ${email} not found!`);

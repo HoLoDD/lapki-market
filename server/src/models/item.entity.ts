@@ -3,7 +3,7 @@ import {
     Column,
     Entity,
     JoinColumn,
-    OneToOne,
+    ManyToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Type } from './type.entity';
@@ -25,7 +25,7 @@ export class Item extends BaseEntity {
     @Column('varchar', { nullable: true })
     photo: string;
 
-    @OneToOne(() => Type, (type) => type.item, { cascade: true })
+    @ManyToOne(() => Type, (type) => type.items, { cascade: true })
     @JoinColumn()
     type: Type;
 }
