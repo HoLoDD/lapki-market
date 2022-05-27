@@ -11,10 +11,10 @@ class TypeController {
         }
     }
 
-    async getTypeById(req: Request, res: Response, next: NextFunction) {
+    async getTypeByCategory(req: Request, res: Response, next: NextFunction) {
         try {
             const { id } = req.params;
-            const type = await typeService.getTypeById(parseInt(id));
+            const type = await typeService.getTypeByCategory(parseInt(id));
             res.json(type);
         } catch (error) {
             next(error);

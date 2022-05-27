@@ -11,8 +11,12 @@ class TypeService {
         return types;
     }
 
-    async getTypeById(id: number) {
-        const type = await dataSource.manager.findOneBy(Type, { id });
+    async getTypeByCategory(id: number) {
+        const type = await dataSource.manager.find(Type, {
+            where: {
+                category: { id },
+            },
+        });
         if (!type) throw ApiError.BadRequest('Type not found');
         return type;
     }
