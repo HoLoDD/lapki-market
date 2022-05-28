@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Main from '../pages/main-page';
 import { privateRoutes, publicRoutes } from '../routes/routes';

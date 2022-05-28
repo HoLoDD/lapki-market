@@ -3,7 +3,6 @@ import Login from '../pages/login-page';
 import Reg from '../pages/reg-page';
 import Basket from '../pages/basket-page';
 import Order from '../pages/order-page';
-import Main from '../pages/main-page';
 import Item from '../pages/item-page';
 import User from '../pages/user-page';
 import OrderHistory from '../pages/order-history-page';
