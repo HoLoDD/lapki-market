@@ -1,18 +1,11 @@
 import React, { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { useAppSelector } from '../hooks/redux';
 import Main from '../pages/main-page';
 import { privateRoutes, publicRoutes } from '../routes/routes';
 
 const AppRouter: FC = () => {
-    const isAuth = false;
-    // const { store } = useContext(Context);
-
-    //   useEffect(() => {
-    //     if (localStorage.getItem('token')) {
-    //       store.checkAuth();
-    //       console.log(store.isAuth);
-    //     }
-    //   }, [store]);
+    const { isAuth } = useAppSelector((state) => state.authReducer);
 
     return (
         <Routes>
@@ -21,9 +14,10 @@ const AppRouter: FC = () => {
                     <Route element={<Element />} {...props} />
                 ))}
 
-            {publicRoutes.map(({ element: Element, ...props }) => (
-                <Route element={<Element />} {...props} />
-            ))}
+            {!isAuth &&
+                publicRoutes.map(({ element: Element, ...props }) => (
+                    <Route element={<Element />} {...props} />
+                ))}
             <Route path="/" element={<Main />} />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

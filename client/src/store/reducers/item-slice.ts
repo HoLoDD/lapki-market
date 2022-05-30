@@ -20,10 +20,10 @@ export const itemSilce = createSlice({
         usersFetching(state) {
             state.isLoading = true;
         },
-        usersFetchingSuccess(state, payload: PayloadAction<IItem[]>) {
+        usersFetchingSuccess(state, action: PayloadAction<IItem[]>) {
             state.isLoading = false;
             state.error = '';
-            state.items = payload.payload;
+            state.items = action.payload;
         },
         usersFetchingFailed(state, action: PayloadAction<string>) {
             state.isLoading = false;

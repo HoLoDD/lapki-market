@@ -62,4 +62,9 @@ export const privateRoutes: IRoute[] = [
         path: RouteNames.ORDER_HISTORY,
         element: OrderHistory,
     },
+    {
+        key: RouteNames.ITEM,
+        path: RouteNames.ITEM,
+        element: Item,
+    },
 ];

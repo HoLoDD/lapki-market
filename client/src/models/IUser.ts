@@ -4,3 +4,9 @@ export interface IUser {
     username: string;
     phone: number;
 }
+
+export interface IUserResponse {
+    accessToken: string;
+    refreshToken: string;
+    user: IUser;
+}
