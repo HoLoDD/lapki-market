@@ -2,7 +2,8 @@ import {
     BaseEntity,
     Entity,
     JoinColumn,
-    ManyToOne,
+    JoinTable,
+    ManyToMany,
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -18,7 +19,7 @@ export class Basket extends BaseEntity {
     @JoinColumn()
     user: User;
 
-    @ManyToOne(() => Item, { cascade: true })
-    @JoinColumn()
+    @ManyToMany(() => Item, (item) => item.baskets)
+    @JoinTable()
     items: Item[];
 }

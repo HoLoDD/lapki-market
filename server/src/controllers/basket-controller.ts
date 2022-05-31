@@ -1,24 +1,42 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import basketService from '../services/basket-service';
 
 class BasketController {
-    async getBasketById(req: Request, res: Response) {
+    async getBasketById(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            const id = parseInt(req.params.id);
+            const basket = await basketService.getBasketForUser(id);
+
+            res.json(basket);
+        } catch (error) {
+            next(error);
+        }
     }
 
-    async addBasket(req: Request, res: Response) {
+    async addItemToBasket(req: Request, res: Response, next: NextFunction) {
         try {
-        } catch (error) {}
+            const { userId, itemId } = req.body;
+            const result = await basketService.addItem(userId, itemId);
+
+            res.json(result);
+        } catch (error) {
+            next(error);
+        }
     }
 
-    async editBasket(req: Request, res: Response) {
+    async removeItemFromBasket(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) {
         try {
-        } catch (error) {}
-    }
+            const { userId, itemId } = req.body;
+            const result = await basketService.removeItem(userId, itemId);
 
-    async deleteBasket(req: Request, res: Response) {
-        try {
-        } catch (error) {}
+            res.json(result);
+        } catch (error) {
+            next(error);
+        }
     }
 }
 

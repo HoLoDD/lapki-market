@@ -3,9 +3,11 @@ import {
     Column,
     Entity,
     JoinColumn,
+    ManyToMany,
     ManyToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Basket } from './basket.entity';
 import { Type } from './type.entity';
 
 @Entity('Item')
@@ -28,4 +30,7 @@ export class Item extends BaseEntity {
     @ManyToOne(() => Type, (type) => type.items, { cascade: true })
     @JoinColumn()
     type: Type;
+
+    @ManyToMany(() => Basket, (basket) => basket.items)
+    baskets: Basket[];
 }
