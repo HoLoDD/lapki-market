@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { IItem } from '../../models/IItem';
-import { IUser, IUserResponse } from '../../models/IUser';
 import { AppDispatch } from '../store';
 import { itemSilce } from './item-slice';
 import { authSilce } from './auth-slice';
@@ -50,7 +49,7 @@ export const loginUser = (user: LoginUser) => async (dispatch: AppDispatch) => {
         dispatch(authSilce.actions.setAuth(true));
     } catch (error) {
         //@ts-ignore
-        dispatch(authSilce.actions.setError(error.message));
+        dispatch(authSilce.actions.setError(error.response.data.message));
     }
 };
 

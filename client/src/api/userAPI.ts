@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { IUserResponse } from '../models/IUser';
 import { authHost, host } from './index';
 

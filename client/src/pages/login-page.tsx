@@ -1,11 +1,13 @@
 import { Button, Checkbox, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { loginUser } from '../store/reducers/action-creator';
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
+    const { error, isAuth, isLoading } = useAppSelector(
+        (state) => state.authReducer
+    );
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,6 +34,7 @@ const Login: FC = () => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
+                    {error && <div style={{ color: 'red' }}>{error}</div>}
                     <Form.Item
                         label="Email"
                         name="email"
@@ -73,7 +76,11 @@ const Login: FC = () => {
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            loading={isLoading}
+                        >
                             Login
                         </Button>
                     </Form.Item>

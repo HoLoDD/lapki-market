@@ -1,6 +1,5 @@
 import { Button, Checkbox, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/redux';
 import { regUser } from '../store/reducers/action-creator';
 
