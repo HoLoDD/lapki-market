@@ -11,11 +11,12 @@ import {
     RegUser,
 } from '../../api/userAPI';
 
-export const fetchItems = () => async (dispatch: AppDispatch) => {
+export const fetchItems = (typeId: number) => async (dispatch: AppDispatch) => {
     try {
         dispatch(itemSilce.actions.usersFetching());
         const response = await axios.get<IItem[]>(
-            'https://lapki-market.herokuapp.com/api/item'
+            `https://lapki-market.herokuapp.com/api/item/`,
+            typeId ? { params: { typeId } } : {}
         );
         dispatch(itemSilce.actions.usersFetchingSuccess(response.data));
     } catch (error) {

@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 250px 0;
+}
+
+.loader {
+    transform: scale(5);
+}

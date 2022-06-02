@@ -5,9 +5,7 @@ import { loginUser } from '../store/reducers/action-creator';
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
-    const { error, isAuth, isLoading } = useAppSelector(
-        (state) => state.authReducer
-    );
+    const { error, isLoading } = useAppSelector((state) => state.authReducer);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +21,7 @@ const Login: FC = () => {
             <Row
                 justify="center"
                 align="middle"
-                style={{ height: 'calc(100vh - 64px)', background: '#00bfff' }}
+                style={{ height: 'calc(100vh - 64px)', background: '#0cf' }}
             >
                 <Form
                     name="basic"

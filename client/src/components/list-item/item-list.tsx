@@ -5,7 +5,10 @@ import Item from '../item/item';
 
 const ItemList: FC<{ items: IItem[] }> = ({ items }) => {
     return (
-        <Row justify="space-around">
+        <Row
+            style={{ overflowY: 'scroll', maxHeight: '70vh' }}
+            justify="space-around"
+        >
             {items ? (
                 items.map((item) => {
                     return <Item key={item.id} {...item} />;

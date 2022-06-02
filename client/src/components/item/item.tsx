@@ -10,7 +10,7 @@ const Item: FC<IItem> = ({ photo, name, description, price, id }) => {
                 <img
                     className={styles.photo}
                     src={'https://lapki-market.herokuapp.com/' + photo}
-                    alt="product photo"
+                    alt="product"
                 />
                 <h2 className={styles.title}>{name}</h2>
             </div>
