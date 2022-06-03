@@ -38,7 +38,13 @@
     color: green;
 }
 
-.btn {
+.btn_add {
     background-color: aqua;
+    border-radius: 30px;
+}
+
+.btn_remove {
+    background-color: rgb(255, 0, 85);
+    color: white;
     border-radius: 30px;
 }

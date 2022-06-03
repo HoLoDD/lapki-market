@@ -1,6 +1,7 @@
 import { DownOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Row, Menu, Input, Button, MenuProps } from 'antd';
 import React, { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './searchbar.module.css';
 
 interface ISearch {
@@ -14,6 +15,8 @@ interface Props {
 }
 
 const Searchbar: FC<Props> = ({ search, setSearch }) => {
+    const navigate = useNavigate();
+
     const categories: MenuProps['items'] = [
         {
             label: 'ALL',
@@ -113,6 +116,7 @@ const Searchbar: FC<Props> = ({ search, setSearch }) => {
                 icon={<ShoppingCartOutlined />}
                 type="ghost"
                 shape="round"
+                onClick={() => navigate('basket')}
             >
                 Cart
             </Button>

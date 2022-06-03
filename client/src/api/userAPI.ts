@@ -42,12 +42,18 @@ export const login = async ({ email, password }: LoginUser) => {
 
 export const logout = async () => {
     const response = await authHost.get('api/user/logout');
+    localStorage.removeItem('token');
 
     return response;
 };
 
-// export const check = async () => {
-//     const response = host.post('api/user/login');
+export const check = async () => {
+    const response = await host.get<IUserResponse>(
+        'http://localhost:4000/api/user/refresh',
+        //'https://lapki-market.herokuapp.com/api/user/refresh',
+        { withCredentials: true }
+    );
+    localStorage.setItem('token', response.data.accessToken);
 
-//     return response;
-// };
+    return response;
+};

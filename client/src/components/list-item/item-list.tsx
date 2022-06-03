@@ -3,7 +3,11 @@ import React, { FC } from 'react';
 import { IItem } from '../../models/IItem';
 import Item from '../item/item';
 
-const ItemList: FC<{ items: IItem[] }> = ({ items }) => {
+const ItemList: FC<{
+    items: IItem[];
+    setItems?: (items: IItem) => void;
+    isBasket: boolean;
+}> = ({ items, setItems, isBasket }) => {
     return (
         <Row
             style={{ overflowY: 'scroll', maxHeight: '70vh' }}
@@ -11,7 +15,14 @@ const ItemList: FC<{ items: IItem[] }> = ({ items }) => {
         >
             {items ? (
                 items.map((item) => {
-                    return <Item key={item.id} {...item} />;
+                    return (
+                        <Item
+                            key={item.id}
+                            item={item}
+                            setItems={setItems}
+                            isBasket={isBasket}
+                        />
+                    );
                 })
             ) : (
                 <h1>Product list is empty!</h1>

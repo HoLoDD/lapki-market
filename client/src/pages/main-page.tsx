@@ -35,6 +35,7 @@ const Main: FC = () => {
                             .toLowerCase()
                             .includes(search.input.toLowerCase());
                     })}
+                    isBasket={false}
                 />
             )}
         </>
