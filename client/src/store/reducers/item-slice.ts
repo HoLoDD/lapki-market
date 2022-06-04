@@ -17,15 +17,15 @@ export const itemSilce = createSlice({
     name: 'item',
     initialState,
     reducers: {
-        usersFetching(state) {
+        itemsFetching(state) {
             state.isLoading = true;
         },
-        usersFetchingSuccess(state, action: PayloadAction<IItem[]>) {
+        itemsFetchingSuccess(state, action: PayloadAction<IItem[]>) {
             state.isLoading = false;
             state.error = '';
             state.items = action.payload;
         },
-        usersFetchingFailed(state, action: PayloadAction<string>) {
+        useritemsFetchingFailed(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
         },

@@ -39,6 +39,12 @@ const Basket: FC = () => {
                     isBasket={true}
                 />
             )}
+            {!isLoading && (
+                <h1 style={{ textAlign: 'center', fontSize: '100px' }}>
+                    {'Total price: ' +
+                        items.reduce((sum, item) => sum + item.price, 0)}
+                </h1>
+            )}
         </>
     );
 };

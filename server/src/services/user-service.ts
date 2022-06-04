@@ -115,8 +115,9 @@ class UserService {
         if (!user) {
             throw ApiError.BadRequest(`User not found!`);
         }
+        const hashPassword = await bcrypt.hash(password, 3);
         if (email) user.email = email;
-        if (password) user.password = password;
+        if (password) user.password = hashPassword;
         if (username) user.username = username;
         if (phone) user.phone = phone;
 

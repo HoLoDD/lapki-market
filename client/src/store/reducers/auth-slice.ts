@@ -25,6 +25,7 @@ export const authSilce = createSlice({
         },
         setUser(state, action: PayloadAction<IUser>) {
             state.user = action.payload;
+            state.isLoading = false;
         },
         setIsLoading(state, action: PayloadAction<boolean>) {
             state.isLoading = action.payload;

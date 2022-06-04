@@ -1,4 +1,4 @@
-import { IUserResponse } from '../models/IUser';
+import { IUser, IUserResponse } from '../models/IUser';
 import { authHost, host } from './index';
 
 export interface RegUser {
@@ -48,12 +48,24 @@ export const logout = async () => {
 };
 
 export const check = async () => {
-    const response = await host.get<IUserResponse>(
-        'http://localhost:4000/api/user/refresh',
-        //'https://lapki-market.herokuapp.com/api/user/refresh',
-        { withCredentials: true }
-    );
+    const response = await host.get<IUserResponse>('api/user/refresh');
     localStorage.setItem('token', response.data.accessToken);
+
+    return response;
+};
+
+export const editProfile = async ({
+    email,
+    password,
+    username,
+    phone,
+}: RegUser) => {
+    const response = await authHost.put<IUser>('api/user', {
+        email,
+        password,
+        username,
+        phone,
+    });
 
     return response;
 };

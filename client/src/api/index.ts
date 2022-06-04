@@ -1,9 +1,9 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { IUserResponse } from '../models/IUser';
 
 const host = axios.create({
     baseURL: 'http://localhost:4000',
-    //baseURL: 'https://lapki-market.herokuapp.com/',
+    // baseURL: 'https://lapki-market.herokuapp.com/',
     withCredentials: true,
 });
 
@@ -26,15 +26,14 @@ authHost.interceptors.response.use(
     async (error) => {
         const originalReq = error.config;
         if (
-            error.response.status == 401 &&
+            error.response.status === 401 &&
             error.config &&
             !error.config._isRetry
         ) {
             originalReq._isRetry = true;
             try {
-                const response = await axios.get<IUserResponse>(
-                    'https://lapki-market.herokuapp.com/user/refresh',
-                    { withCredentials: true }
+                const response = await host.get<IUserResponse>(
+                    '/api/user/refresh'
                 );
                 localStorage.setItem('token', response.data.accessToken);
                 return authHost.request(originalReq);

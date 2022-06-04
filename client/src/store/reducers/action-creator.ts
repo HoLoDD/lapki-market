@@ -5,34 +5,33 @@ import { itemSilce } from './item-slice';
 import { authSilce } from './auth-slice';
 import {
     check,
+    editProfile,
     login,
     LoginUser,
     logout,
     registration,
     RegUser,
 } from '../../api/userAPI';
-import { IUser, IUserResponse } from '../../models/IUser';
+import { IUser } from '../../models/IUser';
 
 export const fetchItems = (typeId: number) => async (dispatch: AppDispatch) => {
     try {
-        dispatch(itemSilce.actions.usersFetching());
+        dispatch(itemSilce.actions.itemsFetching());
         const response = await axios.get<IItem[]>(
             `https://lapki-market.herokuapp.com/api/item/`,
             typeId ? { params: { typeId } } : {}
         );
-        dispatch(itemSilce.actions.usersFetchingSuccess(response.data));
+        dispatch(itemSilce.actions.itemsFetchingSuccess(response.data));
     } catch (error) {
         //@ts-ignore
-        dispatch(itemSilce.actions.usersFetchingFailed(error.message));
+        dispatch(itemSilce.actions.itemsFetchingFailed(error.message));
     }
 };
 
 export const regUser = (user: RegUser) => async (dispatch: AppDispatch) => {
     try {
-        console.log('ALO');
-
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await registration({ ...user });
+        const response = await registration(user);
 
         dispatch(authSilce.actions.setUser(response.data.user));
         dispatch(authSilce.actions.setAuth(true));
@@ -46,7 +45,7 @@ export const regUser = (user: RegUser) => async (dispatch: AppDispatch) => {
 export const loginUser = (user: LoginUser) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await login({ ...user });
+        const response = await login(user);
 
         dispatch(authSilce.actions.setUser(response.data.user));
         dispatch(authSilce.actions.setAuth(true));
@@ -74,6 +73,18 @@ export const checkAuth = () => async (dispatch: AppDispatch) => {
         const response = await check();
         dispatch(authSilce.actions.setAuth(true));
         dispatch(authSilce.actions.setUser(response.data.user));
+    } catch (error) {
+        //@ts-ignore
+        dispatch(authSilce.actions.setError(error.message));
+    }
+};
+
+export const editUser = (user: RegUser) => async (dispatch: AppDispatch) => {
+    try {
+        dispatch(authSilce.actions.setIsLoading(true));
+        const response = await editProfile(user);
+        console.log(response.data);
+        dispatch(authSilce.actions.setUser(response.data));
     } catch (error) {
         //@ts-ignore
         dispatch(authSilce.actions.setError(error.message));

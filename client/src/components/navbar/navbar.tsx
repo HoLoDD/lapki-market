@@ -43,18 +43,8 @@ const Navbar: FC = () => {
         isAuth
             ? {
                   label: user.username,
-                  key: 'username',
+                  key: RouteNames.USER,
                   icon: <IdcardOutlined />,
-                  children: [
-                      {
-                          label: 'Edit',
-                          key: RouteNames.USER,
-                      },
-                      {
-                          label: 'Basket',
-                          key: RouteNames.BASKET,
-                      },
-                  ],
               }
             : {
                   label: 'Reg',
@@ -92,6 +82,7 @@ const Navbar: FC = () => {
                     onClick={onClick}
                     theme="dark"
                     mode="horizontal"
+                    disabledOverflow={true}
                     items={nav_items}
                 ></Menu>
             </Row>

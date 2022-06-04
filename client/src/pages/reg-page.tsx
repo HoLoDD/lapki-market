@@ -1,10 +1,11 @@
 import { Button, Checkbox, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
-import { useAppDispatch } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { regUser } from '../store/reducers/action-creator';
 
 const Reg: FC = () => {
     const dispatch = useAppDispatch();
+    const { isLoading } = useAppSelector((state) => state.authReducer);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -43,6 +44,7 @@ const Reg: FC = () => {
                         ]}
                     >
                         <Input
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -96,16 +98,20 @@ const Reg: FC = () => {
                         />
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                         name="remember"
                         valuePropName="checked"
                         wrapperCol={{ offset: 8, span: 16 }}
                     >
                         <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
+                    </Form.Item> */}
 
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            loading={isLoading}
+                        >
                             Register
                         </Button>
                     </Form.Item>
