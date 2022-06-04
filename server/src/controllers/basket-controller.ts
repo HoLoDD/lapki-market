@@ -4,7 +4,8 @@ import basketService from '../services/basket-service';
 class BasketController {
     async getBasketById(req: Request, res: Response, next: NextFunction) {
         try {
-            const id = parseInt(req.params.id);
+            //@ts-ignore
+            const id = req.user.id;
             const basket = await basketService.getBasketForUser(id);
 
             res.json(basket);
@@ -15,7 +16,9 @@ class BasketController {
 
     async addItemToBasket(req: Request, res: Response, next: NextFunction) {
         try {
-            const { userId, itemId } = req.body;
+            //@ts-ignore
+            const userId = req.user.id;
+            const { itemId } = req.body;
             const result = await basketService.addItem(userId, itemId);
 
             res.json(result);
@@ -30,7 +33,9 @@ class BasketController {
         next: NextFunction
     ) {
         try {
-            const { userId, itemId } = req.body;
+            //@ts-ignore
+            const userId = req.user.id;
+            const { itemId } = req.body;
             const result = await basketService.removeItem(userId, itemId);
 
             res.json(result);

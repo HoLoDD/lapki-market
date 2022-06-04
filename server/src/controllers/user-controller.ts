@@ -26,7 +26,7 @@ class UserController {
                 phone,
             });
             res.cookie('refreshToken', userData.refreshToken, {
-                maxAge: 30 * 24 + 60 + 60 + 1000,
+                maxAge: 30 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
             });
 
@@ -99,10 +99,11 @@ class UserController {
 
     async editUser(req: Request, res: Response, next: NextFunction) {
         try {
+            //@ts-ignore
+            const userId = req.user.id;
             const { email, password, username, phone } = req.body;
-            /*@ts-ignore*/
-            const id = req.user.id;
             const userData = await userService.editUser({
+                userId,
                 email,
                 password,
                 username,

@@ -110,12 +110,12 @@ class UserService {
         };
     }
 
-    async editUser({ email, password, username, phone }) {
-        const user = await dataSource.manager.findOneBy(User, { email });
+    async editUser({ userId, email, password, username, phone }) {
+        const user = await dataSource.manager.findOneBy(User, { id: userId });
         if (!user) {
-            throw ApiError.BadRequest(`User with email ${email} not found!`);
+            throw ApiError.BadRequest(`User not found!`);
         }
-
+        if (email) user.email = email;
         if (password) user.password = password;
         if (username) user.username = username;
         if (phone) user.phone = phone;
