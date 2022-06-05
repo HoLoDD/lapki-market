@@ -17,19 +17,27 @@ class OrderHistoryService {
         return saveResult;
     }
 
-    async addOrder(userId: number, orderId: number) {
+    async addOrder(userId: number, order: Order) {
         const orderHistory = await dataSource.manager.findOne(OrderHistory, {
             where: {
                 user: { id: userId },
             },
-            relations: ['user'],
-        });
-        const order = await dataSource.manager.findOneBy(Order, {
-            id: orderId,
+            relations: ['orders'],
         });
         orderHistory.orders.push(order);
         const saveResult = dataSource.manager.save(OrderHistory, orderHistory);
         return saveResult;
+    }
+
+    async getOrderHistoryForUser(userId: number) {
+        const orderHistory = await dataSource.manager.findOne(OrderHistory, {
+            where: {
+                user: { id: userId },
+            },
+            relations: ['orders', 'orders.soldItems'],
+        });
+
+        return orderHistory;
     }
 }
 

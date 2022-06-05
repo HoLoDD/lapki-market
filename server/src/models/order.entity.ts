@@ -3,7 +3,7 @@ import {
     Column,
     Entity,
     ManyToOne,
-    OneToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { OrderHistory } from './order-histoty.entity';
@@ -17,8 +17,20 @@ export class Order extends BaseEntity {
     @Column('int')
     price: number;
 
-    @OneToOne(() => SoldItem)
-    soldItem: SoldItem;
+    @Column('varchar')
+    name: string;
+
+    @Column('varchar')
+    surname: string;
+
+    @Column('int')
+    phone: number;
+
+    @Column('varchar')
+    city: string;
+
+    @OneToMany(() => SoldItem, (soldItem) => soldItem.order, { cascade: true })
+    soldItems: SoldItem[];
 
     @ManyToOne(() => OrderHistory)
     orderHistory: OrderHistory;

@@ -1,9 +1,9 @@
 import Router, { Application } from 'express';
 import orderHistoryController from '../controllers/order-history-controller';
+import authMiddleware from '../middleware/auth-middleware';
 const router: Application = Router();
 
-router.post('/', orderHistoryController.addOrderHistory);
-router.get('/:id', orderHistoryController.getOrderHistoryById);
-router.delete('/', orderHistoryController.deleteOrder);
+router.get('/', authMiddleware, orderHistoryController.getOrderHistoryById);
+router.delete('/', authMiddleware, orderHistoryController.deleteOrder);
 
 export default router;

@@ -5,9 +5,11 @@ import {
     JoinColumn,
     ManyToMany,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Basket } from './basket.entity';
+import { SoldItem } from './sold-item.entity';
 import { Type } from './type.entity';
 
 @Entity('Item')
@@ -33,4 +35,7 @@ export class Item extends BaseEntity {
 
     @ManyToMany(() => Basket, (basket) => basket.items)
     baskets: Basket[];
+
+    @OneToMany(() => SoldItem, (soldItem) => soldItem.item)
+    soldItems: SoldItem[];
 }
