@@ -13,8 +13,6 @@ const User: FC = () => {
     const [phone, setPhone] = useState<number>(user.phone);
 
     const onFinish = () => {
-        console.log(email, password, username, phone);
-
         dispatch(editUser({ email, password, username, phone }));
     };
 

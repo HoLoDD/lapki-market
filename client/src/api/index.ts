@@ -2,14 +2,14 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { IUserResponse } from '../models/IUser';
 
 const host = axios.create({
-    baseURL: 'http://localhost:4000',
-    // baseURL: 'https://lapki-market.herokuapp.com/',
+    // baseURL: 'http://localhost:4000',
+    baseURL: 'https://lapki-market.herokuapp.com/',
     withCredentials: true,
 });
 
 const authHost = axios.create({
-    baseURL: 'http://localhost:4000',
-    // baseURL: 'https://lapki-market.herokuapp.com/',
+    // baseURL: 'http://localhost:4000',
+    baseURL: 'https://lapki-market.herokuapp.com/',
     withCredentials: true,
 });
 

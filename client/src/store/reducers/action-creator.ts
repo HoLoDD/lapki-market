@@ -19,6 +19,7 @@ export const fetchItems = (typeId: number) => async (dispatch: AppDispatch) => {
         dispatch(itemSilce.actions.itemsFetching());
         const response = await axios.get<IItem[]>(
             `https://lapki-market.herokuapp.com/api/item/`,
+            // 'http://localhost:4000/api/item/',
             typeId ? { params: { typeId } } : {}
         );
         dispatch(itemSilce.actions.itemsFetchingSuccess(response.data));
@@ -83,7 +84,6 @@ export const editUser = (user: RegUser) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
         const response = await editProfile(user);
-        console.log(response.data);
         dispatch(authSilce.actions.setUser(response.data));
     } catch (error) {
         //@ts-ignore
