@@ -7,9 +7,6 @@ import Loader from './loader/loader';
 
 const AppRouter: FC = () => {
     const { isAuth } = useAppSelector((state) => state.authReducer);
-    console.log(isAuth);
-
-    console.log(privateRoutes);
 
     return (
         <Routes>

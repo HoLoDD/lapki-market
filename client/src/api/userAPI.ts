@@ -1,3 +1,4 @@
+import { IOrderHistory } from '../models/IOrderHistory';
 import { IUser, IUserResponse } from '../models/IUser';
 import { authHost, host } from './index';
 
@@ -66,6 +67,12 @@ export const editProfile = async ({
         username,
         phone,
     });
+
+    return response;
+};
+
+export const getOrdersHistory = async () => {
+    const response = await authHost.get<IOrderHistory>('api/order-history');
 
     return response;
 };

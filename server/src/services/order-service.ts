@@ -33,8 +33,8 @@ class OrderService {
             order.soldItems.push(soldItem);
         });
         basket.items = [];
-        await dataSource.manager.save(Basket, basket);
         const saveResult = await dataSource.manager.save(Order, order);
+        await dataSource.manager.save(Basket, basket);
         await orderHistoryService.addOrder(userId, order);
         return saveResult;
     }

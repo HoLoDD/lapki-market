@@ -19,7 +19,6 @@ export enum RouteNames {
     USER = '/user',
     ITEM = '/item',
     BASKET = '/basket',
-    // ORDER = '/order',
     ORDER_HISTORY = '/history',
 }
 
@@ -47,11 +46,6 @@ export const privateRoutes: IRoute[] = [
         path: RouteNames.BASKET,
         element: Basket,
     },
-    // {
-    //     key: RouteNames.ORDER,
-    //     path: RouteNames.ORDER,
-    //     element: Order,
-    // },
     {
         key: RouteNames.USER,
         path: RouteNames.USER,

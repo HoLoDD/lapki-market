@@ -1,7 +1,38 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { getOrdersHistory } from '../api/userAPI';
+import OrdersList from '../components/list-order/list-order';
+import Loader from '../components/loader/loader';
+import { IOrder } from '../models/IOrder';
 
 const OrderHistory: FC = () => {
-    return <h1>ORDER HISTORY</h1>;
+    const [isLoading, setIsLoading] = useState(true);
+    const [orders, setOrders] = useState<IOrder[]>([] as IOrder[]);
+    console.log(orders);
+
+    useEffect(() => {
+        getOrdersHistory()
+            .then((respose) => {
+                setOrders(respose.data.orders);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
+
+    return (
+        <>
+            {isLoading && <Loader />}
+            {!isLoading && orders.length === 0 && (
+                <h1 style={{ textAlign: 'center', fontSize: '160px' }}>
+                    Order history is empty!
+                </h1>
+            )}
+            {!isLoading && orders && <OrdersList orders={orders} />}
+        </>
+    );
 };
 
 export default OrderHistory;

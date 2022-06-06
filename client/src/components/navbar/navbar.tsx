@@ -15,10 +15,18 @@ import { logoutUser } from '../../store/reducers/action-creator';
 
 const Navbar: FC = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { isAuth, user } = useAppSelector((state) => state.authReducer);
+
+    const [current, setCurrent] = useState('mail');
 
     const logout = () => {
         dispatch(logoutUser());
+    };
+
+    const onClick: MenuProps['onClick'] = (e) => {
+        navigate(e.key);
+        setCurrent(e.key);
     };
 
     const nav_items: MenuProps['items'] = [
@@ -45,6 +53,16 @@ const Navbar: FC = () => {
                   label: user.username,
                   key: RouteNames.USER,
                   icon: <IdcardOutlined />,
+                  children: [
+                      {
+                          label: 'Edit',
+                          key: RouteNames.USER,
+                      },
+                      {
+                          label: 'Orders',
+                          key: RouteNames.ORDER_HISTORY,
+                      },
+                  ],
               }
             : {
                   label: 'Reg',
@@ -63,15 +81,6 @@ const Navbar: FC = () => {
                   key: 'login',
               },
     ];
-
-    const [current, setCurrent] = useState('mail');
-
-    const onClick: MenuProps['onClick'] = (e) => {
-        navigate(e.key);
-        setCurrent(e.key);
-    };
-
-    const navigate = useNavigate();
 
     return (
         <Layout.Header>

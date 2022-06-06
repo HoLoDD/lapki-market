@@ -3,11 +3,13 @@ import React, { FC } from 'react';
 import { IItem } from '../../models/IItem';
 import Item from '../item/item';
 
-const ItemList: FC<{
+interface Props {
     items: IItem[];
     setItems?: (items: IItem) => void;
     isBasket: boolean;
-}> = ({ items, setItems, isBasket }) => {
+}
+
+const ItemList: FC<Props> = ({ items, setItems, isBasket }) => {
     return (
         <Row
             style={{ overflowY: 'scroll', maxHeight: '70vh' }}

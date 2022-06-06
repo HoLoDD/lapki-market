@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { useAppDispatch } from '../hooks/redux';
 import { IUserResponse } from '../models/IUser';
+import { authSilce } from '../store/reducers/auth-slice';
 
 const host = axios.create({
     // baseURL: 'http://localhost:4000',
