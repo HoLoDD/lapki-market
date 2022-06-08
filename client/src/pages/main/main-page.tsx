@@ -1,10 +1,10 @@
 import { Row } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
-import ItemList from '../components/list-item/item-list';
-import Loader from '../components/loader/loader';
-import Searchbar from '../components/searchbar/searchbar';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { fetchItems } from '../store/reducers/action-creator';
+import ItemList from '../../components/list-item/item-list';
+import Loader from '../../components/loader/loader';
+import Searchbar from '../../components/searchbar/searchbar';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchItems } from '../../store/reducers/action-creator';
 
 interface ISearch {
     input: string;
@@ -29,14 +29,16 @@ const Main: FC = () => {
             {isLoading && <Loader />}
             {error && <Row justify="center">{error}</Row>}
             {!isLoading && (
-                <ItemList
-                    items={items.filter((item) => {
-                        return item.name
-                            .toLowerCase()
-                            .includes(search.input.toLowerCase());
-                    })}
-                    isBasket={false}
-                />
+                <div style={{ height: '70vh' }}>
+                    <ItemList
+                        items={items.filter((item) => {
+                            return item.name
+                                .toLowerCase()
+                                .includes(search.input.toLowerCase());
+                        })}
+                        isBasket={false}
+                    />
+                </div>
             )}
         </>
     );

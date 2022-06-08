@@ -1,13 +1,17 @@
-import { Button, Row } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import userService from '../api/basket-service';
-import ItemList from '../components/list-item/item-list';
-import Loader from '../components/loader/loader';
-import Modal from '../components/modal/modal';
-import { useAppSelector } from '../hooks/redux';
-import { IItem } from '../models/IItem';
-import Order from './order-page';
+import { useAppSelector } from '../../hooks/redux';
+
+import userService from '../../api/basket-service';
+import { IItem } from '../../models/IItem';
+
+import { Button, Row } from 'antd';
+import ItemList from '../../components/list-item/item-list';
+import Order from '../../components/order-form/order-form';
+import Modal from '../../components/modal/modal';
+import Loader from '../../components/loader/loader';
+
+import styles from './basket-page.module.css';
 
 const Basket: FC = () => {
     const { user } = useAppSelector((state) => state.authReducer);
@@ -36,24 +40,22 @@ const Basket: FC = () => {
                 <Order price={sum}></Order>
             </Modal>
             {!isLoading && items.length === 0 && (
-                <h1 style={{ textAlign: 'center', fontSize: '160px' }}>
-                    EMPTY
-                </h1>
+                <h1 className={styles.empty}>EMPTY</h1>
             )}
             {!isLoading && items && (
-                <ItemList
-                    items={items}
-                    setItems={(item) =>
-                        setItems(items.filter((i) => i.id !== item.id))
-                    }
-                    isBasket={true}
-                />
+                <div className={styles.content}>
+                    <ItemList
+                        items={items}
+                        setItems={(item) =>
+                            setItems(items.filter((i) => i.id !== item.id))
+                        }
+                        isBasket={true}
+                    />
+                </div>
             )}
             {!isLoading && (
                 <Row justify="space-around" align="middle">
-                    <h1 style={{ textAlign: 'center', fontSize: '100px' }}>
-                        {'Total price: ' + sum}
-                    </h1>
+                    <h1 className={styles.totalSum}>{'Total price: ' + sum}</h1>
                     <Button
                         size="large"
                         type="primary"

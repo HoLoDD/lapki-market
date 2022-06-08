@@ -1,0 +1,12 @@
+.content {
+    height: 80vh;
+}
+
+.empty {
+    text-align: center;
+}
+
+.totalSum {
+    text-align: center;
+    font-size: 24px;
+}

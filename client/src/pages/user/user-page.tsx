@@ -1,7 +1,7 @@
 import { Button, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { editUser } from '../store/reducers/action-creator';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { editUser } from '../../store/reducers/action-creator';
 
 const User: FC = () => {
     const dispatch = useAppDispatch();

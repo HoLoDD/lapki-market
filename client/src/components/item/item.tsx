@@ -1,5 +1,5 @@
-import { Button } from 'antd';
 import React, { FC } from 'react';
+import { Button } from 'antd';
 import userService from '../../api/basket-service';
 import { useAppSelector } from '../../hooks/redux';
 import { IItem } from '../../models/IItem';
@@ -38,7 +38,7 @@ const Item: FC<Props> = ({ item, setItems, isBasket }) => {
             <div className={styles.info}>
                 <p className={styles.description}>{item.description}</p>
                 <div>
-                    <h3 className={styles.price}>Price - {item.price}</h3>
+                    <h3 className={styles.price}>Price: {item.price} UAH</h3>
                     <Button
                         className={
                             isBasket ? styles.btn_remove : styles.btn_add

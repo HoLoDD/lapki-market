@@ -1,7 +1,7 @@
 import { Button, Checkbox, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { regUser } from '../store/reducers/action-creator';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { regUser } from '../../store/reducers/action-creator';
 
 const Reg: FC = () => {
     const dispatch = useAppDispatch();

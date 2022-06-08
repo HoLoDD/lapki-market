@@ -1,11 +1,10 @@
 import React from 'react';
-import Login from '../pages/login-page';
-import Reg from '../pages/reg-page';
-import Basket from '../pages/basket-page';
-import Order from '../pages/order-page';
-import Item from '../pages/item-page';
-import User from '../pages/user-page';
-import OrderHistory from '../pages/order-history-page';
+import Login from '../pages/login/login-page';
+import Reg from '../pages/reg/reg-page';
+import Basket from '../pages/basket/basket-page';
+import Item from '../pages/item/item-page';
+import User from '../pages/user/user-page';
+import OrderHistory from '../pages/order-history/order-history-page';
 
 export interface IRoute {
     key: string;

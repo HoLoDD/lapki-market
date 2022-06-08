@@ -1,8 +1,9 @@
-import { Button, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
+import { Button, Form, Input, Layout, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import orderService from '../api/order-service';
-import { IOrder } from '../models/IOrder';
+import { IOrder } from '../../models/IOrder';
+import orderService from '../../api/order-service';
+import styles from './order-form.module.css';
 
 interface Props {
     price: number;
@@ -23,16 +24,10 @@ const Order: FC<Props> = ({ price }) => {
     };
 
     return (
-        <Layout>
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: 'calc(100vh - 64px)',
-                    background: '#8cd3ff',
-                }}
-            >
+        <Layout className={styles.container}>
+            <Row className={styles.card} justify="center" align="middle">
                 <Form
+                    className={styles.form}
                     name="basic"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}

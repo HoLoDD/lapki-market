@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
-import Main from '../pages/main-page';
+import Main from '../pages/main/main-page';
 import { privateRoutes, publicRoutes } from '../routes/routes';
 import Loader from './loader/loader';
 
