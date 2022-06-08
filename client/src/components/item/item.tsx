@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import React, { FC } from 'react';
-import { addItem, removeItem } from '../../api/basketAPI';
+import userService from '../../api/basket-service';
 import { useAppSelector } from '../../hooks/redux';
 import { IItem } from '../../models/IItem';
 import styles from './item.module.css';
@@ -15,12 +15,12 @@ const Item: FC<Props> = ({ item, setItems, isBasket }) => {
     const { user } = useAppSelector((state) => state.authReducer);
 
     const addToBasket = async () => {
-        const response = await addItem(user.id, item.id);
+        const response = await userService.addItem(user.id, item.id);
         alert('Product "' + item.name + '" added to basket!');
     };
 
     const removeFromBasket = async () => {
-        const response = await removeItem(user.id, item.id);
+        const response = await userService.removeItem(user.id, item.id);
         setItems!(item);
         alert('Product "' + item.name + '" added to basket!');
     };

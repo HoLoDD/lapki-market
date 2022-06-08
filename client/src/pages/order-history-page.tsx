@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { getOrdersHistory } from '../api/userAPI';
+import userService from '../api/user-service';
 import OrdersList from '../components/list-order/list-order';
 import Loader from '../components/loader/loader';
 import { IOrder } from '../models/IOrder';
@@ -10,7 +10,8 @@ const OrderHistory: FC = () => {
     console.log(orders);
 
     useEffect(() => {
-        getOrdersHistory()
+        userService
+            .getOrdersHistory()
             .then((respose) => {
                 setOrders(respose.data.orders);
             })

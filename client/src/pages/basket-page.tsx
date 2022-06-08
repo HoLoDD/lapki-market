@@ -1,7 +1,7 @@
 import { Button, Row } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getItems } from '../api/basketAPI';
+import userService from '../api/basket-service';
 import ItemList from '../components/list-item/item-list';
 import Loader from '../components/loader/loader';
 import Modal from '../components/modal/modal';
@@ -18,7 +18,8 @@ const Basket: FC = () => {
     const [isModal, setIsModal] = useState<boolean>(false);
 
     useEffect(() => {
-        getItems(user.id)
+        userService
+            .getItems(user.id)
             .then((respose) => {
                 setItems(respose.data.items);
                 setIsLoading(false);

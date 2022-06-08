@@ -1,18 +1,10 @@
 import axios from 'axios';
-import { IItem } from '../../models/IItem';
 import { AppDispatch } from '../store';
 import { itemSilce } from './item-slice';
 import { authSilce } from './auth-slice';
-import {
-    check,
-    editProfile,
-    login,
-    LoginUser,
-    logout,
-    registration,
-    RegUser,
-} from '../../api/userAPI';
+import { IItem } from '../../models/IItem';
 import { IUser } from '../../models/IUser';
+import userService, { LoginUser, RegUser } from '../../api/user-service';
 
 export const fetchItems = (typeId: number) => async (dispatch: AppDispatch) => {
     try {
@@ -32,7 +24,7 @@ export const fetchItems = (typeId: number) => async (dispatch: AppDispatch) => {
 export const regUser = (user: RegUser) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await registration(user);
+        const response = await userService.reg(user);
 
         dispatch(authSilce.actions.setUser(response.data.user));
         dispatch(authSilce.actions.setAuth(true));
@@ -46,7 +38,7 @@ export const regUser = (user: RegUser) => async (dispatch: AppDispatch) => {
 export const loginUser = (user: LoginUser) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await login(user);
+        const response = await userService.login(user);
 
         dispatch(authSilce.actions.setUser(response.data.user));
         dispatch(authSilce.actions.setAuth(true));
@@ -59,7 +51,7 @@ export const loginUser = (user: LoginUser) => async (dispatch: AppDispatch) => {
 export const logoutUser = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await logout();
+        const response = await userService.logout();
         dispatch(authSilce.actions.setAuth(false));
         dispatch(authSilce.actions.setUser({} as IUser));
     } catch (error) {
@@ -71,7 +63,7 @@ export const logoutUser = () => async (dispatch: AppDispatch) => {
 export const checkAuth = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await check();
+        const response = await userService.check();
         dispatch(authSilce.actions.setAuth(true));
         dispatch(authSilce.actions.setUser(response.data.user));
     } catch (error) {
@@ -83,7 +75,7 @@ export const checkAuth = () => async (dispatch: AppDispatch) => {
 export const editUser = (user: RegUser) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSilce.actions.setIsLoading(true));
-        const response = await editProfile(user);
+        const response = await userService.editProfile(user);
         dispatch(authSilce.actions.setUser(response.data));
     } catch (error) {
         //@ts-ignore

@@ -1,7 +1,7 @@
 import { Button, Form, Input, Layout, Row } from 'antd';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createOrder } from '../api/orderAPI';
+import orderService from '../api/order-service';
 import { IOrder } from '../models/IOrder';
 
 interface Props {
@@ -14,7 +14,7 @@ const Order: FC<Props> = ({ price }) => {
     const navigate = useNavigate();
 
     const onFinish = () => {
-        createOrder(order);
+        orderService.createOrder(order);
         navigate('../');
     };
 
