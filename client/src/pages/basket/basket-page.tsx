@@ -17,9 +17,10 @@ const Basket: FC = () => {
     const { user } = useAppSelector((state) => state.authReducer);
 
     const [isLoading, setIsLoading] = useState(true);
-    const [items, setItems] = useState<IItem[]>([] as IItem[]);
-    const sum = items.reduce((sum, item) => sum + item.price, 0);
     const [isModal, setIsModal] = useState<boolean>(false);
+    const [items, setItems] = useState<IItem[]>([] as IItem[]);
+
+    const sum = items.reduce((sum, item) => sum + item.price, 0);
 
     useEffect(() => {
         userService

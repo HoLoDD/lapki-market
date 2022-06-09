@@ -33,13 +33,28 @@ const Searchbar: FC<Props> = ({ search, setSearch }) => {
                     children: [
                         {
                             label: 'Food',
-                            key: 'type:1',
+                            key: '1',
+                            onClick: () => setSearch({ ...search, type: 1 }),
+                        },
+                        {
+                            label: 'Toys',
+                            key: '2',
                             onClick: () => setSearch({ ...search, type: 4 }),
                         },
                         {
-                            label: 'House',
-                            key: 'type:2',
-                            onClick: () => setSearch({ ...search, type: 9 }),
+                            label: 'Carriers',
+                            key: '3',
+                            onClick: () => setSearch({ ...search, type: 5 }),
+                        },
+                        {
+                            label: 'Beds',
+                            key: '4',
+                            onClick: () => setSearch({ ...search, type: 6 }),
+                        },
+                        {
+                            label: 'Scratchers',
+                            key: '5',
+                            onClick: () => setSearch({ ...search, type: 7 }),
                         },
                     ],
                 },
@@ -55,13 +70,28 @@ const Searchbar: FC<Props> = ({ search, setSearch }) => {
                     children: [
                         {
                             label: 'Food',
-                            key: 'type:3',
-                            onClick: () => setSearch({ ...search, type: 5 }),
+                            key: '6',
+                            onClick: () => setSearch({ ...search, type: 2 }),
                         },
                         {
-                            label: 'Toy',
-                            key: 'type:4',
+                            label: 'Toys',
+                            key: '7',
                             onClick: () => setSearch({ ...search, type: 8 }),
+                        },
+                        {
+                            label: 'Leashes',
+                            key: '8',
+                            onClick: () => setSearch({ ...search, type: 9 }),
+                        },
+                        {
+                            label: 'Kennels',
+                            key: '9',
+                            onClick: () => setSearch({ ...search, type: 10 }),
+                        },
+                        {
+                            label: 'Bowls',
+                            key: '10',
+                            onClick: () => setSearch({ ...search, type: 11 }),
                         },
                     ],
                 },
@@ -77,13 +107,23 @@ const Searchbar: FC<Props> = ({ search, setSearch }) => {
                     children: [
                         {
                             label: 'Food',
-                            key: 'type:5',
-                            onClick: () => setSearch({ ...search, type: 6 }),
+                            key: '11',
+                            onClick: () => setSearch({ ...search, type: 3 }),
                         },
                         {
-                            label: 'Cage',
-                            key: 'type:6',
-                            onClick: () => setSearch({ ...search, type: 7 }),
+                            label: 'Toys',
+                            key: '12',
+                            onClick: () => setSearch({ ...search, type: 14 }),
+                        },
+                        {
+                            label: 'Cages',
+                            key: '13',
+                            onClick: () => setSearch({ ...search, type: 12 }),
+                        },
+                        {
+                            label: 'Feeders',
+                            key: '14',
+                            onClick: () => setSearch({ ...search, type: 13 }),
                         },
                     ],
                 },

@@ -1,6 +1,7 @@
 @import '~antd/dist/antd.css';
 * {
     margin: 0;
+    font-family: monospace;
 }
 
 body {
