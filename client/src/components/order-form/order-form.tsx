@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Button, Form, Input, Layout, Row } from 'antd';
+import { Button, Form, Input, Layout, Radio, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { IOrder } from '../../models/IOrder';
 import orderService from '../../api/order-service';
@@ -109,6 +109,16 @@ const Order: FC<Props> = ({ price }) => {
                                 })
                             }
                         />
+                    </Form.Item>
+
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <span>Payment method: </span>
+                        <Radio.Group>
+                            <Radio value={1}>Cash</Radio>
+                            <Radio value={2} disabled>
+                                Credit Card
+                            </Radio>
+                        </Radio.Group>
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

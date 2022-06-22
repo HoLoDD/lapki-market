@@ -9,6 +9,9 @@ declare global {
             POSTGRES_USER: string;
             POSTGRES_PASSWORD: string;
             POSTGRES_DB: string;
+            JWT_ACCESS_KEY: string;
+            JWT_REFRESH_KEY: string;
+            CLIENT_URL: string;
         }
     }
 }
